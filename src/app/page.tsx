@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { supabase } from "../utils/supabaseClient";
-import Link from "next/link";
+import ReviewCardList from "../components/ReviewCardList";
 
 interface Post {
   uuid: string;
@@ -84,26 +84,7 @@ export default function Home() {
       <h1 className="text-2xl font-bold">NCSFood</h1>
       <p className="p-5">Connor and Nicole food review website</p>
 
-      <ul className="flex space-x-4">
-        {posts.map((post) => (
-          <li
-            key={post.uuid}
-            className="rounded-3xl border-2 border-teal-900 min-w-3xs hover:bg-gray-700 transition"
-          >
-            <Link
-              href={`/reviews/${post.uuid}`}
-              className="block h-full w-full px-5 py-20"
-            >
-              <h2 className="text-xl font-bold">{post.restaurant}</h2>
-              {post.created_at && (
-                <p className="text-sm text-teal-400 mt-1">
-                  {new Date(post.created_at).toLocaleDateString()}
-                </p>
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <ReviewCardList reviews={posts} />
     </main>
   );
 }
