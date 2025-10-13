@@ -2,17 +2,17 @@ import { supabase } from "../../../utils/supabaseClient";
 
 interface ReviewPageProps {
   params: {
-    id: string;
+    uuid: string;
   };
 }
 
 export default async function ReviewPage({ params }: ReviewPageProps) {
-  const { id } = await params;
+  const { uuid } = await params;
 
   const { data: post } = await supabase
     .from("reviews")
     .select("*")
-    .eq("id", id)
+    .eq("uuid", uuid)
     .single();
 
   if (!post) {
@@ -22,7 +22,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
   return (
     <main className="flex flex-col items-center p-8">
       <h1 className="text-3xl font-bold">{post.restaurant}</h1>
-      <p className="text-gray-600 mt-4">{post.review}</p>
+      <p className="text-gray-600 white-space-pre-line mt-4">{post.review}</p>
       {post.created_at && (
         <p className="text-sm text-gray-400 mt-4">
           Reviewed on {new Date(post.created_at).toLocaleDateString()}

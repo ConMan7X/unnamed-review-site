@@ -5,7 +5,7 @@ import { supabase } from "../utils/supabaseClient";
 import Link from "next/link";
 
 interface Post {
-  id: string | number;
+  uuid: string;
   restaurant: string;
   review: string;
   created_at?: string;
@@ -82,15 +82,15 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center p-8">
       <h1 className="text-2xl font-bold">NCSFood</h1>
-      <p className="p-5" >Connor and Nicole food review website</p>
+      <p className="p-5">Connor and Nicole food review website</p>
 
       <ul className="flex space-x-4">
         {posts.map((post) => (
           <li
-            key={post.id}
+            key={post.uuid}
             className="rounded-3xl border-2 border-emerald-800 px-5 py-20 min-w-3xs hover:bg-gray-700 transition"
           >
-            <Link href={`/reviews/${post.id}`} className="block h-full">
+            <Link href={`/reviews/${post.uuid}`} className="block h-full">
               <h2 className="font-semibold">{post.restaurant}</h2>
               {post.created_at && (
                 <p className="text-xs text-gray-400 mt-1">
