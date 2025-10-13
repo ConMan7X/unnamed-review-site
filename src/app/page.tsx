@@ -88,12 +88,15 @@ export default function Home() {
         {posts.map((post) => (
           <li
             key={post.uuid}
-            className="rounded-3xl border-2 border-emerald-800 px-5 py-20 min-w-3xs hover:bg-gray-700 transition"
+            className="rounded-3xl border-2 border-teal-900 min-w-3xs hover:bg-gray-700 transition"
           >
-            <Link href={`/reviews/${post.uuid}`} className="block h-full">
-              <h2 className="font-semibold">{post.restaurant}</h2>
+            <Link
+              href={`/reviews/${post.uuid}`}
+              className="block h-full w-full px-5 py-20"
+            >
+              <h2 className="text-xl font-bold">{post.restaurant}</h2>
               {post.created_at && (
-                <p className="text-xs text-gray-400 mt-1">
+                <p className="text-sm text-teal-400 mt-1">
                   {new Date(post.created_at).toLocaleDateString()}
                 </p>
               )}
