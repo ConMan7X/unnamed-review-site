@@ -1,23 +1,36 @@
 import Link from "next/link";
-import { supabase } from "../../../utils/supabaseClient";
+import { getReview } from "@/lib/reviews";
+import { Post } from "@/types/reviews";
 
 interface ReviewPageProps {
-  params: {
+  params: Promise<{
     uuid: string;
-  };
+  }>;
 }
 
 export default async function ReviewPage({ params }: ReviewPageProps) {
   const { uuid } = await params;
 
-  const { data: post } = await supabase
-    .from("reviews")
-    .select("*")
-    .eq("uuid", uuid)
-    .single();
+  let post: Post = {
+    uuid: "",
+    restaurant: "",
+    review: "",
+  };
+  let error = null;
 
-  if (!post) {
-    return <div>Review not found</div>;
+  try {
+    post = await getReview(uuid);
+  } catch (err) {
+    error = err instanceof Error ? err.message : "Failed to load review";
+  }
+
+  if (error) {
+    return (
+      <main className="flex flex-col items-center p-8">
+        <h1 className="text-2xl font-bold">Review Not Found</h1>
+        <p className="mt-4">{error}</p>
+      </main>
+    );
   }
 
   return (
@@ -25,7 +38,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
       <h1 className="text-3xl font-bold">{post.restaurant}</h1>
       {post.created_at && (
         <p className="text-sm text-teal-400 mt-4">
-          Reviewed on {new Date(post.created_at).toLocaleDateString()}
+          Reviewed on {new Date(post.created_at).toLocaleDateString("en-AU")}
         </p>
       )}
       <p className="text-teal-400 whitespace-pre-line mt-4">{post.review}</p>

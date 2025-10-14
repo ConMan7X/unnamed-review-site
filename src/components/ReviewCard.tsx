@@ -29,7 +29,7 @@ export default function ReviewCard({
         <h2 className="text-xl font-bold">{review.restaurant}</h2>
         {showDate && review.created_at && (
           <p className="text-sm text-teal-400 mt-1">
-            {new Date(review.created_at).toLocaleDateString()}
+            {new Date(review.created_at).toLocaleDateString("en-AU")}
           </p>
         )}
       </Link>

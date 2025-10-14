@@ -1,12 +1,6 @@
 import ReviewCardList from "../components/ReviewCardList";
 import { getRecentReviews } from "../lib/reviews";
-
-interface Post {
-  uuid: string;
-  restaurant: string;
-  review: string;
-  created_at?: string;
-}
+import { Post } from "@/types/reviews";
 
 export default async function Home() {
   let posts: Post[] = [];
