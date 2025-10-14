@@ -17,9 +17,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center p-8">
-      <h1 className="text-2xl font-bold">NCSFood</h1>
-      <p className="p-5">Connor and Nicole food review website</p>
-
+      <h1 className="text-2xl font-bold mb-10">NCSFood</h1>
       {error ? (
         <div className="text-red-500 mb-4">Error: {error}</div>
       ) : (

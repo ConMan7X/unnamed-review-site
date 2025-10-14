@@ -27,7 +27,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
 
   if (error) {
     return (
-      <main className="flex flex-col items-center p-8">
+      <main className="flex flex-col items-center p-8 pt-24">
         <h1 className="text-2xl font-bold">Review Not Found</h1>
         <p className="mt-4">{error}</p>
       </main>
@@ -35,7 +35,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
   }
 
   return (
-    <main className="flex flex-col items-center py-10 px-100">
+    <main className="flex flex-col items-center py-10 px-100 pt-24 min-h-screen">
       <h1 className="text-3xl font-bold">{post.restaurant}</h1>
       {post.created_at && (
         <p className="text-sm text-teal-400 mt-4">
