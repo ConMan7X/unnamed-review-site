@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getReview } from "@/lib/reviews";
 import { Post } from "@/types/reviews";
+import { Button } from "@/components/ui/button";
 
 interface ReviewPageProps {
   params: Promise<{
@@ -42,9 +43,9 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
         </p>
       )}
       <p className="text-teal-400 whitespace-pre-line mt-4">{post.review}</p>
-      <Link href={`/`} className="hover:bg-gray-700">
-        Back to Home
-      </Link>
+      <Button asChild className="m-5" variant="outline">
+        <Link href={`/reviews`}>More Reviews</Link>
+      </Button>
     </main>
   );
 }

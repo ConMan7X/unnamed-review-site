@@ -1,6 +1,8 @@
+import Link from "next/link";
 import ReviewCardList from "../components/ReviewCardList";
 import { getRecentReviews } from "../lib/reviews";
 import { Post } from "@/types/reviews";
+import { Button } from "@/components/ui/button";
 
 export default async function Home() {
   let posts: Post[] = [];
@@ -23,6 +25,9 @@ export default async function Home() {
       ) : (
         <ReviewCardList reviews={posts} />
       )}
+      <Button asChild className="m-5" variant="outline">
+        <Link href={`/reviews`}>More Reviews</Link>
+      </Button>
     </main>
   );
 }
