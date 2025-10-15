@@ -1,11 +1,6 @@
 import Link from "next/link";
-
-interface Review {
-  uuid: string;
-  restaurant: string;
-  review: string;
-  created_at?: string;
-}
+import Image from "next/image";
+import { Review } from "@/lib/reviews";
 
 interface ReviewCardProps {
   review: Review;
@@ -24,14 +19,28 @@ export default function ReviewCard({
     >
       <Link
         href={`/reviews/${review.uuid}`}
-        className="block h-full w-full px-5 py-20 text-inherit no-underline"
+        className="block h-full w-full no-underline"
       >
-        <h2 className="text-xl font-bold">{review.restaurant}</h2>
-        {showDate && review.created_at && (
-          <p className="text-sm text-teal-400 mt-1">
-            {new Date(review.created_at).toLocaleDateString("en-AU")}
-          </p>
+        {review.image_url && (
+          <div className="relative h-48 w-full">
+            <Image
+              src={review.image_url}
+              alt={`${review.restaurant} - Food`}
+              fill
+              className="object-cover rounded-3xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
         )}
+
+        <div className="m-5">
+          <h2 className="text-xl font-bold">{review.restaurant}</h2>
+          {showDate && review.created_at && (
+            <p className="text-sm text-teal-400 mt-1">
+              {new Date(review.created_at).toLocaleDateString("en-AU")}
+            </p>
+          )}
+        </div>
       </Link>
     </li>
   );

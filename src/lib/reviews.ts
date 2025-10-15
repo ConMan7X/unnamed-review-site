@@ -5,6 +5,7 @@ export interface Review {
   restaurant: string;
   review: string;
   created_at?: string;
+  image_url?: string;
 }
 
 export async function getReviews(): Promise<Review[]> {
