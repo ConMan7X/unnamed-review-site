@@ -1,12 +1,5 @@
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
-export interface Review {
-  uuid: string;
-  restaurant: string;
-  review: string;
-  created_at?: string;
-  image_url?: string;
-}
+import { Review } from "@/types/reviews";
 
 export async function getReviews(): Promise<Review[]> {
   const response = await fetch(`${BASE_URL}/api/reviews`, {

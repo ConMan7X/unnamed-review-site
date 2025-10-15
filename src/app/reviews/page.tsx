@@ -1,11 +1,11 @@
 import ReviewCardList from "@/components/ReviewCardList";
 import { Button } from "@/components/ui/button";
 import { getReviews } from "@/lib/reviews";
-import { Post } from "@/types/reviews";
+import { Review } from "@/types/reviews";
 import Link from "next/link";
 
 export default async function reviews() {
-  let posts: Post[] = [];
+  let posts: Review[] = [];
   let error = null;
 
   try {

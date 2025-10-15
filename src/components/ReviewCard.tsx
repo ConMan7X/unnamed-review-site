@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Review } from "@/lib/reviews";
+import { Review } from "@/types/reviews";
 
 interface ReviewCardProps {
   review: Review;

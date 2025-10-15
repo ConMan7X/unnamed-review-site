@@ -1,11 +1,11 @@
 import Link from "next/link";
 import ReviewCardList from "../components/ReviewCardList";
 import { getRecentReviews } from "../lib/reviews";
-import { Post } from "@/types/reviews";
+import { Review } from "@/types/reviews";
 import { Button } from "@/components/ui/button";
 
 export default async function Home() {
-  let posts: Post[] = [];
+  let posts: Review[] = [];
   let error = null;
 
   try {
@@ -17,7 +17,7 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center p-8">
-      <h1 className="text-2xl font-bold mb-10">NCSFood</h1>
+      <h1 className="text-3xl font-bold mb-10">NCSFood</h1>
       {error ? (
         <div className="text-red-500 mb-4">Error: {error}</div>
       ) : (

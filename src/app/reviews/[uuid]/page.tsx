@@ -1,6 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getReview } from "@/lib/reviews";
-import { Post } from "@/types/reviews";
+import { Review } from "@/types/reviews";
 import { Button } from "@/components/ui/button";
 
 interface ReviewPageProps {
@@ -12,7 +13,7 @@ interface ReviewPageProps {
 export default async function ReviewPage({ params }: ReviewPageProps) {
   const { uuid } = await params;
 
-  let post: Post = {
+  let review: Review = {
     uuid: "",
     restaurant: "",
     review: "",
@@ -20,7 +21,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
   let error = null;
 
   try {
-    post = await getReview(uuid);
+    review = await getReview(uuid);
   } catch (err) {
     error = err instanceof Error ? err.message : "Failed to load review";
   }
@@ -36,13 +37,24 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
 
   return (
     <main className="flex flex-col items-center py-10 px-100 pt-24 min-h-screen">
-      <h1 className="text-3xl font-bold">{post.restaurant}</h1>
-      {post.created_at && (
-        <p className="text-sm text-teal-400 mt-4">
-          Reviewed on {new Date(post.created_at).toLocaleDateString("en-AU")}
+      <h1 className="text-3xl font-bold">{review.restaurant}</h1>
+      {review.created_at && (
+        <p className="text-sm text-teal-400 m-4">
+          Reviewed on {new Date(review.created_at).toLocaleDateString("en-AU")}
         </p>
       )}
-      <p className="text-teal-400 whitespace-pre-line mt-4">{post.review}</p>
+      {review.image_url && (
+        <div className="relative h-128 w-full">
+          <Image
+            src={review.image_url}
+            alt={`${review.restaurant} - Food`}
+            fill
+            className="object-cover rounded-3xl"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      <p className="text-teal-400 whitespace-pre-line mt-4">{review.review}</p>
       <Button asChild className="m-5" variant="outline">
         <Link href={`/reviews`}>More Reviews</Link>
       </Button>

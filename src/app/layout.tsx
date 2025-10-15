@@ -35,8 +35,8 @@ export default function RootLayout({
           <footer className="bg-green py-8">
             <div className="max-w-7xl mx-auto px-4 text-center text-gray-500">
               <p>
-                © {new Date().getFullYear()} NCSFood. Connor and Nicole's food
-                reviews.
+                © {new Date().getFullYear()} NCSFood. Connor and Nicole's Food
+                Reviews.
               </p>
             </div>
           </footer>
