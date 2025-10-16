@@ -15,6 +15,7 @@ export default function ReviewCard({
 }: ReviewCardProps) {
   return (
     <li
+      data-cy="review-card"
       className={`rounded-3xl border-2 border-teal-900 min-w-3xs hover:bg-gray-700 transition ${className}`}
     >
       <Link
