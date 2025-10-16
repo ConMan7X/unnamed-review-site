@@ -36,28 +36,35 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
   }
 
   return (
-    <main className="flex flex-col items-center py-10 px-100 pt-24 min-h-screen">
-      <h1 className="text-3xl font-bold">{review.restaurant}</h1>
-      {review.created_at && (
-        <p className="text-sm text-teal-400 m-4">
-          Reviewed on {new Date(review.created_at).toLocaleDateString("en-AU")}
+    <main className="flex flex-col items-center py-10 pt-5 w-full min-h-screen">
+      <div className="w-full max-w-4xl mx-auto px-4">
+        <h1 className="text-3xl font-bold text-center">{review.restaurant}</h1>
+        {review.created_at && (
+          <p className="text-sm text-teal-400 m-4 text-center">
+            Reviewed on{" "}
+            {new Date(review.created_at).toLocaleDateString("en-AU")}
+          </p>
+        )}
+        {review.image_url && (
+          <div className="relative h-128 w-full">
+            <Image
+              src={review.image_url}
+              alt={`${review.restaurant} - Food`}
+              fill
+              className="object-cover rounded-3xl"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
+        )}
+        <p className="text-teal-400 whitespace-pre-line mt-4">
+          {review.review}
         </p>
-      )}
-      {review.image_url && (
-        <div className="relative h-128 w-full">
-          <Image
-            src={review.image_url}
-            alt={`${review.restaurant} - Food`}
-            fill
-            className="object-cover rounded-3xl"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+        <div className="flex justify-center">
+          <Button asChild className="m-5" variant="outline">
+            <Link href={`/reviews`}>More Reviews</Link>
+          </Button>
         </div>
-      )}
-      <p className="text-teal-400 whitespace-pre-line mt-4">{review.review}</p>
-      <Button asChild className="m-5" variant="outline">
-        <Link href={`/reviews`}>More Reviews</Link>
-      </Button>
+      </div>
     </main>
   );
 }

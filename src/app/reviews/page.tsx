@@ -16,7 +16,7 @@ export default async function reviews() {
   }
 
   return (
-    <main className="flex flex-col items-center p-4">
+    <main className="flex flex-col items-center">
       <h1 className="text-3xl font-bold p-5">All Reviews</h1>
 
       {error ? (

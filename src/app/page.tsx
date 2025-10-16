@@ -9,7 +9,7 @@ export default async function Home() {
   let error = null;
 
   try {
-    posts = await getRecentReviews(3);
+    posts = await getRecentReviews(4);
   } catch (err) {
     console.error("Failed to load reviews:", err);
     error = err instanceof Error ? err.message : "Failed to load reviews";
