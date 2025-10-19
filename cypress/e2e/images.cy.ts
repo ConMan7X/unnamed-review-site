@@ -7,12 +7,4 @@ describe("Images", () => {
       cy.wrap($img).should("have.attr", "alt");
     });
   });
-
-  // it("should handle missing images gracefully", () => {
-  //   // Test a review without an image
-  //   cy.visit("/reviews/review-without-image");
-  //   cy.get("img").should("not.exist");
-  //   // Or if you have a fallback, test that
-  //   // cy.get('[data-cy="image-fallback"]').should('exist')
-  // });
 });

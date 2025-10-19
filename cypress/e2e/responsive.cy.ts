@@ -12,12 +12,10 @@ describe("Responsive Design", () => {
     cy.get('[data-cy="review-card"]').should("be.visible");
   });
 
-  // it("should have working mobile navigation", () => {
-  //   cy.viewport("iphone-x");
-  //   cy.visit("/");
-  //   // Test mobile menu if you have one
-  //   cy.get('button[aria-label="Toggle menu"]').click();
-  //   cy.get("nav").should("contain", "Home");
-  //   cy.get("nav").should("contain", "Reviews");
-  // });
+  it("should have working mobile navigation", () => {
+    cy.viewport("iphone-x");
+    cy.visit("/");
+    cy.get("nav").should("contain", "Home");
+    cy.get("nav").should("contain", "Reviews");
+  });
 });

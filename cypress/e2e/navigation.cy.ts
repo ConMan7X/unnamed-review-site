@@ -13,10 +13,9 @@ describe("Navigation", () => {
     cy.contains("All Reviews");
   });
 
-  // TODO: implement about page
-  // it("should navigate to about page", () => {
-  //   cy.get('nav a[href*="/about"]').click();
-  //   cy.url().should("include", "/about");
-  //   cy.contains("About NCSFood");
-  // });
+  it("should navigate to about page", () => {
+    cy.get('nav a[href*="/about"]').click();
+    cy.url().should("include", "/about");
+    cy.contains("About NCSFood");
+  });
 });
