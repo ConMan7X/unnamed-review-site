@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { supabase } from "../../../../utils/supabase/client";
+import { createClient } from "../../../../utils/supabase/server";
+import { cookies } from "next/headers";
 
 interface Context {
   params: Promise<{
@@ -8,6 +9,9 @@ interface Context {
 }
 
 export async function GET(request: Request, { params }: Context) {
+  const cookieStore = await cookies();
+  const supabase = await createClient(cookieStore);
+
   try {
     const { id } = await params;
 
