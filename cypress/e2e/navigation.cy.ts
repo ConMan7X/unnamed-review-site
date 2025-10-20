@@ -4,7 +4,7 @@ describe("Navigation", () => {
   });
 
   it("should navigate to the home page", () => {
-    cy.contains("NCSFood");
+    cy.contains("Connor and Nicole");
   });
 
   it("should navigate to all reviews page", () => {

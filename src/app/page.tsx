@@ -3,6 +3,7 @@ import ReviewCardList from "../components/ReviewCardList";
 import { getRecentReviews } from "../lib/reviews";
 import { Review } from "@/types/reviews";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default async function Home() {
   let posts: Review[] = [];
@@ -17,12 +18,23 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col items-center p-8">
-      <h1 className="text-3xl font-bold mb-10">NCSFood</h1>
-      {error ? (
-        <div className="text-red-500 mb-4">Error: {error}</div>
-      ) : (
-        <ReviewCardList reviews={posts} />
-      )}
+      <Image
+        src="/connor_nicole.jpeg"
+        alt="Image of Connor and Nicole"
+        width={150}
+        height={150}
+        className="rounded-full object-cover aspect-square mb-2"
+      />
+      <h1 className="text-4xl font-bold mb-10">Connor and Nicole</h1>
+
+      <div className="w-full max-w-6xl px-4">
+        <h2 className="self-start text-2xl font-bold mb-4">Recent</h2>
+        {error ? (
+          <div className="text-red-500 mb-4">Error: {error}</div>
+        ) : (
+          <ReviewCardList reviews={posts} />
+        )}
+      </div>
       <Button asChild className="m-5" variant="outline">
         <Link href={`/reviews`}>More Reviews</Link>
       </Button>
