@@ -11,7 +11,7 @@ export async function getReviews(): Promise<Review[]> {
 
     const supabase = await createClient(cookieStore);
 
-    const { data, error } = await (supabase as any)
+    const { data, error } = await supabase
       .from("reviews")
       .select("*")
       .order("created_at", { ascending: false });
@@ -41,7 +41,7 @@ export async function getReview(id: string): Promise<Review> {
 
     const supabase = await createClient(cookieStore);
 
-    const { data, error } = await (supabase as any)
+    const { data, error } = await supabase
       .from("reviews")
       .select("*")
       .eq("uuid", id)
@@ -72,7 +72,7 @@ export async function getRecentReviews(limit: number = 3): Promise<Review[]> {
 
     const supabase = await createClient(cookieStore);
 
-    const { data, error } = await (supabase as any)
+    const { data, error } = await supabase
       .from("reviews")
       .select("*")
       .order("created_at", { ascending: false })

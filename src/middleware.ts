@@ -41,14 +41,14 @@ export async function middleware(request: NextRequest) {
   // If you only need the helper for other server code, you can remove this.
   try {
     // getSession will read cookies from request and may call supabase session refresh logic
-    const { data, error } = await supabase.auth.getSession();
-    if (error) {
+    const result = await supabase.auth.getSession();
+    if (result.error) {
       // handle or log if you want, but don't expose secrets
-      console.log("supabase auth.getSession error:", error.message);
+      console.log("supabase auth.getSession error:", result.error.message);
     } else {
-      // `data.session` contains the session (or null)
+      // `result.data.session` contains the session (or null)
       // You can use session info to rewrite or set headers:
-      // e.g. if (!data.session) return NextResponse.redirect('/login');
+      // e.g. if (!result.data.session) return NextResponse.redirect('/login');
     }
   } catch (err) {
     console.error("supabase session check failed", err);
