@@ -1,12 +1,17 @@
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 import { Review } from "@/types/reviews";
-import { supabase } from "@/utils/supabaseClient";
+import { createClient } from "../utils/supabase/server";
+import { cookies } from "next/headers";
 
 export async function getReviews(): Promise<Review[]> {
   // If running on the server (build/SSR), use Supabase client directly to avoid
   // making a network request to localhost which may not be available during build.
   if (typeof window === "undefined") {
-    const { data, error } = await supabase
+    const cookieStore = await cookies();
+
+    const supabase = await createClient(cookieStore);
+
+    const { data, error } = await (supabase as any)
       .from("reviews")
       .select("*")
       .order("created_at", { ascending: false });
@@ -32,7 +37,11 @@ export async function getReviews(): Promise<Review[]> {
 
 export async function getReview(id: string): Promise<Review> {
   if (typeof window === "undefined") {
-    const { data, error } = await supabase
+    const cookieStore = await cookies();
+
+    const supabase = await createClient(cookieStore);
+
+    const { data, error } = await (supabase as any)
       .from("reviews")
       .select("*")
       .eq("uuid", id)
@@ -59,7 +68,11 @@ export async function getReview(id: string): Promise<Review> {
 
 export async function getRecentReviews(limit: number = 3): Promise<Review[]> {
   if (typeof window === "undefined") {
-    const { data, error } = await supabase
+    const cookieStore = await cookies();
+
+    const supabase = await createClient(cookieStore);
+
+    const { data, error } = await (supabase as any)
       .from("reviews")
       .select("*")
       .order("created_at", { ascending: false })

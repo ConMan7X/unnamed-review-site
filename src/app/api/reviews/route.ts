@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
-import { supabase } from "../../../utils/supabaseClient";
+import { createClient } from "../../../utils/supabase/server";
+import { cookies } from "next/headers";
 
 export async function GET(request: Request) {
+  const cookieStore = await cookies();
+  const supabase = await createClient(cookieStore);
+
   try {
     const { searchParams } = new URL(request.url);
     const limit = searchParams.get("limit");

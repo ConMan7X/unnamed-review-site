@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "../../../../utils/supabaseClient";
+import { supabase } from "../../../../utils/supabase/client";
 
 interface Context {
   params: Promise<{
