@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getReview } from "@/lib/reviews";
 import { Review } from "@/types/reviews";
+import { Rating } from "@/types/reviews";
 import { Button } from "@/components/ui/button";
 
 interface ReviewPageProps {
@@ -17,6 +18,8 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
     uuid: "",
     restaurant: "",
     review: "",
+    created_at: "",
+    rating: Rating.BAD,
   };
   let error = null;
 
