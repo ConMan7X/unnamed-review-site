@@ -39,4 +39,9 @@ describe("Review Detail Page", () => {
     cy.contains("More Reviews").click();
     cy.url().should("include", "/reviews");
   });
+
+  it("should display review rating correctly", () => {
+    cy.visit("/reviews/611d4986-6f35-4eb2-85ed-5705512c9057");
+    cy.get("h2").should("contain", "Good");
+  });
 });

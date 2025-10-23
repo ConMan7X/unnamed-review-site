@@ -11,7 +11,6 @@ interface ReviewCardProps {
 export default function ReviewCard({
   review,
   className = "",
-  showDate = true,
 }: ReviewCardProps) {
   return (
     <li
@@ -36,11 +35,9 @@ export default function ReviewCard({
 
         <div className="m-5">
           <h2 className="text-xl font-bold">{review.restaurant}</h2>
-          {showDate && review.created_at && (
-            <p className="text-sm text-teal-400 mt-1">
-              {new Date(review.created_at).toLocaleDateString("en-AU")}
-            </p>
-          )}
+          <p className="text-sm text-teal-400 mt-1">
+            {new Date(review.created_at).toLocaleDateString("en-AU")}
+          </p>
         </div>
       </Link>
     </li>
