@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { getReview } from "@/lib/reviews";
 import { Review } from "@/types/reviews";
-import { Rating } from "@/types/reviews";
 import { Button } from "@/components/ui/button";
 
 interface ReviewPageProps {
@@ -19,7 +18,7 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
     restaurant: "",
     review: "",
     created_at: "",
-    rating: Rating.BAD,
+    rating: "",
   };
   let error = null;
 
@@ -62,6 +61,10 @@ export default async function ReviewPage({ params }: ReviewPageProps) {
         <p className="text-teal-400 whitespace-pre-line mt-4">
           {review.review}
         </p>
+        <h2 className="text-white mt-4 text-xl font-semibold">
+          {" "}
+          Overall Rating: {review.rating}
+        </h2>
         <div className="flex justify-center">
           <Button asChild className="m-5" variant="outline">
             <Link href={`/reviews`}>More Reviews</Link>
