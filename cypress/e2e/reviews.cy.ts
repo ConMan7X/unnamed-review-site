@@ -44,4 +44,9 @@ describe("Reviews", () => {
       }
     });
   });
+
+  it("should have a sort by date button on reviews page", () => {
+    cy.visit("/reviews");
+    cy.get('[data-cy="sort-by"]').should("exist");
+  });
 });
