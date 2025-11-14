@@ -11,7 +11,10 @@ export default function SortSelect({ sort }: { sort: string }) {
   };
 
   return (
-    <div className="space-x-2 mb-4 border border-gray-300 rounded-xl pl-4">
+    <div
+      data-cy="sort-by"
+      className="space-x-2 mb-4 border border-gray-300 rounded-xl pl-4"
+    >
       <label className="text-lrg font-medium mb-1">Sort reviews</label>
       <select
         name="selectedSort"
