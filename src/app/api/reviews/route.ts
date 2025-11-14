@@ -9,11 +9,18 @@ export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
     const limit = searchParams.get("limit");
+    const sort = searchParams.get("sort") || "date";
 
-    let query = supabase
-      .from("reviews")
-      .select("*")
-      .order("created_at", { ascending: false });
+    let query = supabase.from("reviews").select("*");
+
+    // Sorting logic
+    if (sort === "date") {
+      query = query.order("created_at", { ascending: false });
+    } else if (sort === "rating") {
+      query = query.order("rating", { ascending: false });
+    } else if (sort === "restaurantName") {
+      query = query.order("restaurant", { ascending: true });
+    }
 
     if (limit && !isNaN(parseInt(limit))) {
       query = query.limit(parseInt(limit));

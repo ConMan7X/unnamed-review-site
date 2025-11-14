@@ -1,29 +1,29 @@
 import ReviewCardList from "@/components/ReviewCardList";
 import { Button } from "@/components/ui/button";
-import { getReviews } from "@/lib/reviews";
-import { Review } from "@/types/reviews";
 import Link from "next/link";
+import SortSelect from "@/components/SortSelect";
 
-export default async function reviews() {
-  let posts: Review[] = [];
-  let error = null;
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-  try {
-    posts = await getReviews();
-  } catch (err) {
-    console.error("Failed to load reviews:", err);
-    error = err instanceof Error ? err.message : "Failed to load reviews";
-  }
+export default async function Reviews(props: {
+  searchParams: Promise<{ sort?: string }>;
+}) {
+  const searchParams = await props.searchParams;
+  const sort = searchParams.sort ?? "date";
+
+  const res = await fetch(`${BASE_URL}/api/reviews?sort=${sort}`, {
+    cache: "no-store",
+  });
+  const { data } = await res.json();
 
   return (
     <main className="flex flex-col items-center">
       <h1 className="text-3xl font-bold p-5">All Reviews</h1>
 
-      {error ? (
-        <div className="text-red-500 mb-4">Error: {error}</div>
-      ) : (
-        <ReviewCardList reviews={posts} />
-      )}
+      <SortSelect sort={sort} />
+
+      <ReviewCardList reviews={data} />
+
       <Button asChild className="m-5" variant="outline">
         <Link href={`/`}>Back to Home</Link>
       </Button>
